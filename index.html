@@ -7,170 +7,167 @@
 	</title>
 	<meta charset="utf-8">
 	<link rel="stylesheet" type="text/css" href="css/estilo_1.css">
+	<link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+	<script type="text/javascript" languaje="javascript" src="js/script.js"></script>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
 
-	<script type="text/javascript" languaje="javascript">
-		
-		function True_or_false(day,month,year)
-		{
-			var dteDate;
-			month = month-1;
-			dteDate = new Date(year,month,day);
-			return ((day = dteDate.getDate()) && (month = dteDate.getMonth()) && (year = dteDate.getFullYear()));
-		}
-
-		function validar_fech(fecha)
-		{
-			var patron = new RegExp("^(15|16|17|18|19|20)+([0-9]{2})([-])([0-9]{1,2})([-])([0-9]{1,2})$");
-			if(fecha.search(patron) == 0)
-			{
-				var valores = fecha.split("-");
-				if(True_or_false(valores[2],valores[1],valores[0]))
-				{
-					return true;
-				}
-				
-			}else{
-				return false;
-			}
-			
-			
-		}
-
-		function calcularEdad()
-		{
-			var fecha = document.getElementById("ingreso_user").value;
-			if(validar_fech(fecha) == true)
-			{
-				var valores = fecha.split("-");
-				var dia = valores[2];
-				var mes = valores[1];
-				var ano = valores[0];
-				var fecha_hoy = new Date();
-				var ahora_ano = fecha_hoy.getYear()+1;
-				var ahora_mes = fecha_hoy.getMonth()+1;
-				var ahora_dia = fecha_hoy.getDate();
-
-				var edad = (ahora_ano + 1900) - ano;
-				if (ahora_mes<mes)
-				{
-					edad--;
-				}
-				if ((mes == ahora_mes) && (ahora_dia<dia));
-				{
-					edad--;
-				}
-				if (edad > 1900)
-				{
-					edad -= 1900;
-				}
-				var meses = 0;
-				if(ahora_mes>mes)
-					meses = ahora_mes-mes;
-				if(ahora_mes<mes)
-					meses=12-(mes-ahora_mes);
-				if(ahora_mes == mes && dia>ahora_dia)
-					meses = 11;
-
-				var dias = 0;
-				if(ahora_dia>dia)
-					dias = ahora_dia-dia;
-				if(ahora_dia<dia)
-				{
-					ultimoDiaMes = new Date(ahora_ano, ahora_mes, 0);
-					dias = ultimoDiaMes.getDate()-(dia-ahora_dia);
-				}
-
-				document.getElementById("result").innerHTML="Tienes "+edad+" años, "+meses+" meses y "+dias+" dias";
-
-			}else{
-				document.getElementById("result").innerHTML="La fecha "+fecha+" es incorrecta";
-			}
-		}
-
-		function Mostrar(form) {
-			var valores = [];
-			var Depor = form.Deportes;
-
-			for (var i=0, iLen=Depor.length; i<iLen; i++)
-			{
-				if(Depor[i].checked)
-				{
-					valores.push(Depor[i].value);
-				}
-			}
-
-			alert (	'Tu nombre es: '+formulario.nombre.value+'\n'+
-					'Tu apellido es: '+formulario.Apellido.value+'\n'+
-					'Su '+formulario.tip_doc1.value+' es: '+formulario.identi.value+'\n'+
-					'Su fecha de nacimiento es '+formulario.ingreso_user.value+ '(YYYY/MM/DD)'+'\n'+
-					'Su direccion es: '+formulario.dire.value+'\n'+
-					'Su email es: '+formulario.email.value+'\n'+
-					'Su numero de celular es: '+formulario.cel.value+'\n'+
-					'Deportes: '+valores.join(', '));
-		}
-		
-	</script>
 </head>
 <body>
-	<div class="Fondo">
-		<center>
-			<h1>
-			Favor responder.
-			</h1>
-		</center>
-
-		<form target="_blank" name="formulario" id="formulario">
-			<fieldset class="FieldsetForm">
-				<legend>Datos personales</legend>
-				<center>
-					<div class="estilos">
-						<div align="left">
-							Nombre 			<input type="text" name="nombre"><br><br>
-							Apellido 		<input type="text" name="Apellido"><br><br>
-							Tipo documento: <br>
-										 	<input type="radio" name="tip_doc1" value="cedula">Cedula de ciudadania<br>
-										 	<input type="radio" name="tip_doc2" value="tarjeta">Tarjeta de identidad"<br>
-										 	<input type="radio" name="tip_doc3" value="registro">Registro civil<br><br>
-							Identificación 	<input type="text" name="identi"><br><br>
-							Edad 			<input type="date" name="ingreso_user" id="ingreso_user" />
-											<input type="button" value="Calcular edad" onclick="javascript:calcularEdad();" />
-
-							<div id="result"></div><div id="result2"></div>
-							<br><br>
-							Direccion <input type="text" name="dire" value=""><br><br>
-							Email <input type="text" name="email" value=""><br><br>
-							No. celular <input type="text" name="cel"><br><br>
+	<div class="container">
+		<div class="form">
+			<form name="formulario" id="formulario">
+				<div class="tittle mx-auto">
+					<h1>Datos personales</h1>
+				</div>
+				<div class="form-group row">
+					<label for="nombre" class="col-sm-2 col-form-label">Nombre</label>
+					<div class="col-sm-10"><input type="text" class="form-control" id="nombre" name="nombre"></div>
+				</div>
+				<div class="form-group row">
+					<label for="Apellido" class="col-sm-2 col-form-label">Apellido</label>
+					<div class="col-sm-10"><input type="text" class="form-control" id="Apellido" name="apellido"></div>
+				</div>
+				<div class="form-group row">
+					<label for="identi" class="col-sm-2 col-form-label">Documento</label>
+					<div class="col-sm-5">
+						<input type="text" class="form-control" id="identi" name="idendi">
+					</div>
+					<div class="col-sm-5">
+						<div class="input-group">
+						  <div class="input-group-prepend">
+						    <label class="input-group-text" for="inputGroupSelect01">Tipo</label>
+						  </div>
+						  <select class="custom-select" id="inputGroupSelect01">
+						    <option value="Cédula" name="tip_doc1">Cédula</option>
+						    <option value="Tarjeta de identidad" name="tip_doc1">Tarjeta identidad</option>
+						    <option value="Registro Civil" name="tip_doc1">Registro civil</option>
+						  </select>
 						</div>
 					</div>
-				</center>
-				<center>
-					<h2>DEPORTES</h2>
-				</center>
-				<br>
-				<center>
-					<table>
-						<tr>
-							<td><input type="checkbox" value="Futbol" name="Deportes">Futbol</td>
-							<td><input type="checkbox" value="Basquetbol" name="Deportes">Basquetbol</td>
-							<td><input type="checkbox" value="Tennis" name="Deportes">Tennis</td>
-						</tr>
-						<tr>
-							<td><input type="checkbox" value="Patinaje" name="Deportes">Patinaje</td>
-							<td><input type="checkbox" value="Pentatlon" name="Deportes">Pentatlon</td>
-							<td><input type="checkbox" value="Natacion" name="Deportes">Natacion</td>
-						</tr>
-						<tr>
-							<td><input type="checkbox" value="Boxeo" name="Deportes">Boxeo</td>
-							<td><input type="checkbox" value="Ciclismo" name="Deportes">Ciclismo</td>
-							<td><input type="checkbox" value="Tiro" name="Deportes">Tiro</td>
-						</tr>
-					</table>
-				</center>
-				<br>
-				<br>
-				<div class="boton"><input type="button" onclick="javascript:Mostrar(form);" value="Guardar"></div><br>
-				<img src="" style="display:scroll; position:fixed; bottom:100px; right:100px;">
-			</fieldset>
-		</form>
+				</div>
+				<div class="form-group row">
+					<label for=ingreso_user"" class="col-sm-2 col-form-label">Edad</label>
+					<div class="col-sm-4"><input type="date" class="form-control" id="ingreso_user" name="ingreso_user"></div>
+					<div class="col-sm-3">
+						<div class="input-group">
+						  <div class="input-group-prepend">
+						    <label class="input-group-text" for="result">Edad</label>
+						  </div>
+						  <input type="text" class="form-control" id="result" name="result" disabled>
+						</div>
+					</div>
+					<div class="col-sm-3">
+						<input type="button" class="btn btn-secondary" value="Calcular edad" onclick="javascript:calcularEdad();" />
+					</div>
+				</div>
+				<div class="form-group row">
+					<label for="dire" class="col-sm-2 col-form-label">Dirección</label>
+					<div class="col-sm-10"><input type="text" class="form-control" id="dire" name="dire"></div>
+				</div>
+				<div class="form-group row">
+					<label for="email" class="col-sm-2 col-form-label">Email</label>
+					<div class="col-sm-10"><input type="email" class="form-control" id="email" name="email"></div>
+				</div>
+				<div class="form-group row">
+					<label for="cel" class="col-sm-2 col-form-label">Celular</label>
+					<div class="col-sm-10"><input type="number" class="form-control" id="cel" name="cel"></div>
+					</div>
+				<div class="tittle mx-auto">
+					<h1>Deportes</h1>
+				</div>
+				<div class="form-group row">
+					<div class="col-sm-4">
+						<div class="input-group mb-2">
+							<div class="input-group-prepend">
+								<div class="input-group-text">
+									<input type="checkbox" name="Deportes" value="Fútbol" aria-label="Checkbox for following text input">
+								</div>
+							</div>
+							<input type="text" class="form-control" value="Fútbol" aria-label="Text input with checkbox" disabled>
+						</div>
+
+						<div class="input-group mb-2">
+							<div class="input-group-prepend">
+								<div class="input-group-text">
+									<input type="checkbox" name="Deportes" value="Basquetball" aria-label="Checkbox for following text input">
+								</div>
+							</div>
+							<input type="text" class="form-control" value="Basquetball" aria-label="Text input with checkbox" disabled>
+						</div>
+
+						<div class="input-group mb-2">
+							<div class="input-group-prepend">
+								<div class="input-group-text">
+									<input type="checkbox" name="Deportes" value="Tennis" aria-label="Checkbox for following text input">
+								</div>
+							</div>
+							<input type="text" class="form-control" value="Tennis" aria-label="Text input with checkbox" disabled>
+						</div>
+					</div>
+					<div class="col-sm-4">
+						<div class="input-group mb-2">
+							<div class="input-group-prepend">
+								<div class="input-group-text">
+									<input type="checkbox" name="Deportes" value="Patinaje" aria-label="Checkbox for following text input">
+								</div>
+							</div>
+							<input type="text" class="form-control" value="Patinaje" aria-label="Text input with checkbox" disabled>
+						</div>
+
+						<div class="input-group mb-2">
+							<div class="input-group-prepend">
+								<div class="input-group-text">
+									<input type="checkbox" name="Deportes" value="Pentatlon" aria-label="Checkbox for following text input">
+								</div>
+							</div>
+							<input type="text" class="form-control" value="Pentatlon" aria-label="Text input with checkbox" disabled>
+						</div>
+
+						<div class="input-group mb-2">
+							<div class="input-group-prepend">
+								<div class="input-group-text">
+									<input type="checkbox" name="Deportes" value="Natación" aria-label="Checkbox for following text input">
+								</div>
+							</div>
+							<input type="text" class="form-control" value="Natación" aria-label="Text input with checkbox" disabled>
+						</div>
+					</div>
+					<div class="col-sm-4">
+						<div class="input-group mb-2">
+							<div class="input-group-prepend">
+								<div class="input-group-text">
+									<input type="checkbox" name="Deportes" value="Boxeo" aria-label="Checkbox for following text input">
+								</div>
+							</div>
+							<input type="text" class="form-control" value="Boxeo" aria-label="Text input with checkbox" disabled>
+						</div>
+
+						<div class="input-group mb-2">
+							<div class="input-group-prepend">
+								<div class="input-group-text">
+									<input type="checkbox" name="Deportes" value="Ciclismo" aria-label="Checkbox for following text input">
+								</div>
+							</div>
+							<input type="text" class="form-control" value="Ciclismo" aria-label="Text input with checkbox" disabled>
+						</div>
+
+						<div class="input-group mb-2">
+							<div class="input-group-prepend">
+								<div class="input-group-text">
+									<input type="checkbox" name="Deportes" value="Tiro" aria-label="Checkbox for following text input">
+								</div>
+							</div>
+							<input type="text" class="form-control" value="Tiro" aria-label="Text input with checkbox" disabled>
+						</div>
+					</div>
+				</div>
+
+				<input type="button" class="btn btn-success" onclick="javascript:Mostrar(form);" value="Guardar">
+			</form>
+		</div>
 	</div>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
 </body>
