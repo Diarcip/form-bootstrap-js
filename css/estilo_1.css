@@ -1,6 +1,7 @@
 
 *{
 	font-family: 'Montserrat', sans-serif;
+	color: white;
 }
 body{
 	//background-image: url('perro.gif');
@@ -23,4 +24,9 @@ h1 {
 }
 .form{
 	padding: 50px;
+}
+label:hover{
+	color: #1e66e0;
+	cursor: pointer;
+	transition: .3s;
 }
