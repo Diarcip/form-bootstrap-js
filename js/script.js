@@ -6,17 +6,13 @@ function True_or_false(day,month,year)
 	return ((day = dteDate.getDate()) && (month = dteDate.getMonth()) && (year = dteDate.getFullYear()));
 }
 
-function validar_fech(fecha)
-{
+function validar_fech(fecha){
 	var patron = new RegExp("^(15|16|17|18|19|20)+([0-9]{2})([-])([0-9]{1,2})([-])([0-9]{1,2})$");
-	if(fecha.search(patron) == 0)
-	{
+	if(fecha.search(patron) == 0){
 		var valores = fecha.split("-");
-		if(True_or_false(valores[2],valores[1],valores[0]))
-		{
+		if(True_or_false(valores[2],valores[1],valores[0])){
 			return true;
 		}
-
 	}else{
 		return false;
 	}
@@ -24,8 +20,7 @@ function validar_fech(fecha)
 
 function calcularEdad(){
 	var fecha = document.getElementById("ingreso_user").value;
-	if(validar_fech(fecha) == true)
-	{
+	if(validar_fech(fecha) == true){
 		var valores = fecha.split("-");
 		var dia = valores[2];
 		var mes = valores[1];
@@ -59,16 +54,16 @@ function calcularEdad(){
 		var dias = 0;
 		if(ahora_dia>dia)
 			dias = ahora_dia-dia;
-		if(ahora_dia<dia)
-		{
+		if(ahora_dia<dia){
 			ultimoDiaMes = new Date(ahora_ano, ahora_mes, 0);
 			dias = ultimoDiaMes.getDate()-(dia-ahora_dia);
-      
+
 		document.getElementsByName("result")[0].value = edad;
 
-	}else{
-		document.getElementsByName("result")[0].value = "La fecha "+fecha+" es incorrecta";
-	}
+  	}else{
+  		document.getElementsByName("result")[0].value = "La fecha "+fecha+" es incorrecta";
+  	}
+  }
 }
 
 function Mostrar(form) {
@@ -82,6 +77,8 @@ function Mostrar(form) {
 			valores.push(Depor[i].value);
 		}
 	}
+  var mylist = document.getElementById("inputGroupSelect01");
+  //document.getElementById("inputGroupSelect01").value = mylist.options[mylist.selectedIndex].text;
 
 	alert (	'Tu nombre es: '+formulario.nombre.value+'\n'+
 			'Tu apellido es: '+formulario.Apellido.value+'\n'+
