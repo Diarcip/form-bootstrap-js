@@ -1,5 +1,7 @@
 
 *{
+	margin: 0;
+	padding: 0;
 	font-family: 'Montserrat', sans-serif;
 	color: white;
 }
@@ -15,7 +17,7 @@ h1 {
 	height: auto;
 }
 .tittle{
-	width: 450px;
+	max-width: 400px;
 	text-align: center;
 	margin-bottom: 30px;
 }

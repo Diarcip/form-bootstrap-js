@@ -63,10 +63,8 @@ function calcularEdad(){
 		{
 			ultimoDiaMes = new Date(ahora_ano, ahora_mes, 0);
 			dias = ultimoDiaMes.getDate()-(dia-ahora_dia);
-		}
-
-		//document.getElementById("result").innerHTML=""+edad+" años";
-		document.getElementsByName("result")[0].value = ""+edad+" años";
+      
+		document.getElementsByName("result")[0].value = edad;
 
 	}else{
 		document.getElementsByName("result")[0].value = "La fecha "+fecha+" es incorrecta";
